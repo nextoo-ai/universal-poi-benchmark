@@ -1,0 +1,41 @@
+{
+  "id": "it-rome",
+  "name": "Rome",
+  "geography": {
+    "type": "city",
+    "country": "IT",
+    "adminLevel": null,
+    "boundarySource": null,
+    "boundaryId": null,
+    "geometry": null,
+    "boundingBox": {
+      "south": 41.65,
+      "west": 12.2,
+      "north": 42.15,
+      "east": 12.8
+    },
+    "areaKm2": null,
+    "areaSource": null
+  },
+  "demographics": {
+    "population": null,
+    "populationYear": null,
+    "populationSource": null
+  },
+  "tourism": {
+    "metric": "visitor_arrivals",
+    "value": null,
+    "referenceYear": null,
+    "source": null
+  },
+  "characteristics": [
+    "historic_city",
+    "cultural_destination",
+    "major_tourist_destination"
+  ],
+  "datasetLanguage": "en",
+  "notes": [
+    "Bounding box is an approximate technical envelope, NOT a verified administrative polygon.",
+    "Unknown demographic/tourism values must not be invented. Rome v1 uses locked minimums."
+  ]
+}

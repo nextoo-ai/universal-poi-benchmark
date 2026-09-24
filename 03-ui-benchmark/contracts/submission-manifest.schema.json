@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nextoo.io/schemas/poi-ui-submission-v1.json",
+  "title": "POI UI submission manifest v1",
+  "type": "object",
+  "required": ["benchmarkVersion", "applicationName", "startCommand", "buildCommand", "dataHandling", "bundledContent"],
+  "properties": {
+    "benchmarkVersion": { "const": "1.0" },
+    "applicationName": { "type": "string", "minLength": 1 },
+    "startCommand": { "type": "string", "minLength": 1 },
+    "buildCommand": { "type": "string", "minLength": 1 },
+    "dataHandling": {
+      "type": "object",
+      "required": ["uploadFormat", "processingLocation", "remotePoiTransmission", "additionalUploadBehavior", "sourcePoiEditing", "datasetDeletion"],
+      "properties": {
+        "uploadFormat": { "type": "array", "contains": { "const": "json" } },
+        "processingLocation": { "const": "browser" },
+        "remotePoiTransmission": { "const": false },
+        "additionalUploadBehavior": {
+          "enum": ["replace", "merge", "user-choice"]
+        },
+        "sourcePoiEditing": { "const": false },
+        "datasetDeletion": { "const": true },
+        "persistence": { "enum": ["none", "session", "local"] }
+      },
+      "additionalProperties": true
+    },
+    "bundledContent": {
+      "type": "object",
+      "required": ["step2DatasetIncluded", "poiCount", "poiImagesIncluded"],
+      "properties": {
+        "step2DatasetIncluded": { "const": false },
+        "poiCount": { "type": "integer", "minimum": 0, "maximum": 20 },
+        "poiImagesIncluded": { "const": false },
+        "description": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "mapProvider": { "type": ["string", "null"] },
+    "notes": { "type": "string" }
+  },
+  "additionalProperties": false
+}

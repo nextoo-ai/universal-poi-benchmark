@@ -1,0 +1,88 @@
+{
+  "benchmarkId": "universal-poi-discovery/rome/v1",
+  "schemaVersion": "1.0.0",
+  "destinationId": "it-rome",
+  "target": {
+    "mode": "fixed",
+    "minimum": 500,
+    "target": 500,
+    "maximumSoft": 650,
+    "categoryMinimums": {
+      "gastronomy": 80,
+      "culture": 150
+    },
+    "tagMinimums": {
+      "hidden_gem": 80
+    },
+    "subcategoryCoverageMinimums": {
+      "gastronomy": 8,
+      "culture": 8
+    },
+    "hiddenGemCategoryMinimum": 3,
+    "requiredMetroLines": [
+      "A",
+      "B",
+      "B1",
+      "C"
+    ],
+    "majorTransportHubsMinimum": 2
+  },
+  "quality": {
+    "gastronomyGoogleMinScore": 4.0,
+    "googleRatingRequiredExceptSubcategories": [
+      "food_market"
+    ],
+    "imageRequired": true,
+    "imageLicenseUnknownAllowed": true,
+    "referenceUrlRequired": true,
+    "googleMapsUrlRequired": true,
+    "imageSourcePageRequired": true,
+    "requireEvidence": [
+      "identity",
+      "location"
+    ],
+    "hiddenGemMustHaveEvidence": true,
+    "minDescriptionCharacters": 40,
+    "rejectInventedLocations": true,
+    "externalReachabilityCheck": "manual_or_separate_network_audit"
+  },
+  "adaptiveModel": {
+    "status": "provisional_not_calibrated",
+    "note": "Use only in a separately versioned benchmark with verified comparable inputs. Rome v1 is fixed for reproducibility.",
+    "formula": "round_to_nearest_25(clamp(80 + 4*sqrt(population/1000) + 3*sqrt(tourismMetricValue/1000) + 1.5*sqrt(areaKm2), 100, 1200))",
+    "requiredInputs": [
+      "population",
+      "tourism.metric",
+      "tourism.value",
+      "geography.areaKm2"
+    ],
+    "acceptedTourismMetric": [
+      "visitor_arrivals"
+    ],
+    "unknownInputPolicy": "fail_no_guess",
+    "quotaPolicy": "derive destination-specific category and tag minimums; do not reuse Rome quotas"
+  },
+  "evaluation": {
+    "gates": [
+      "valid_json",
+      "schema",
+      "counts",
+      "taxonomy",
+      "basic_provenance",
+      "google_rating_metadata",
+      "media_metadata",
+      "transit_coverage"
+    ],
+    "manualReview": [
+      "real_world_authenticity",
+      "coordinate_accuracy",
+      "image_depicts_place",
+      "source_supports_claims",
+      "image_license_correctness",
+      "google_maps_directness_and_rating",
+      "duplicate_entities",
+      "editorial_quality"
+    ],
+    "report": "discovery-report.json"
+  }
+}

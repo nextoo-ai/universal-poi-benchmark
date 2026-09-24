@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/poi-evaluator/llm-review-result.schema.json",
+  "title": "POI qualitative review result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["reviewId", "verdict", "confidence", "findings", "evidenceUsed", "reviewer"],
+  "properties": {
+    "reviewId": {"type": "string", "minLength": 1},
+    "verdict": {
+      "enum": ["pass", "minor_issues", "major_issues", "insufficient_evidence", "needs_human_review"]
+    },
+    "identityRelation": {
+      "enum": ["same_place", "part_of", "contains", "related", "different_place", "uncertain"]
+    },
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "scores": {
+      "type": "object",
+      "additionalProperties": {"type": "number", "minimum": 0, "maximum": 5}
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["code", "severity", "message"],
+        "properties": {
+          "code": {"type": "string"},
+          "severity": {"enum": ["info", "low", "medium", "high"]},
+          "field": {"type": ["string", "null"]},
+          "message": {"type": "string"},
+          "claim": {"type": ["string", "null"]},
+          "evidenceIds": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "evidenceUsed": {"type": "array", "items": {"type": "string"}},
+    "reviewer": {
+      "type": "object",
+      "required": ["provider", "model", "promptVersion"],
+      "properties": {
+        "provider": {"type": "string"},
+        "model": {"type": "string"},
+        "promptVersion": {"type": "string"}
+      }
+    }
+  }
+}

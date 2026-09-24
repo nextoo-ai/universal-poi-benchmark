@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "1.0",
+  "datasetVersion": "demo-a",
+  "language": "en",
+  "region": {"name": "Example City"},
+  "pois": [
+    {
+      "id": "a-clock-tower",
+      "name": "Old Clock Tower",
+      "description": "A stone clock tower overlooking the central square.",
+      "category": "culture_heritage",
+      "subcategory": "monument",
+      "location": {"latitude": 48.14860, "longitude": 17.10770},
+      "externalIds": {"wikidata": "Q123456"},
+      "tags": ["architecture", "viewpoint"],
+      "links": [{"type": "official", "url": "https://example.com/clock-tower"}],
+      "evidence": [{"type": "identity", "url": "https://example.com/clock-tower", "supports": ["existence", "location"]}]
+    }
+  ]
+}

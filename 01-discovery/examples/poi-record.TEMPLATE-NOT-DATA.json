@@ -1,0 +1,81 @@
+{
+  "id": "it-rome:replace-with-verified-slug",
+  "externalIds": {
+    "wikidata": null,
+    "osmType": null,
+    "osmId": null
+  },
+  "name": "REPLACE WITH REAL POI NAME",
+  "alternateNames": [],
+  "category": "culture",
+  "subcategory": "church",
+  "description": "REPLACE with a factual, independently worded 40-500 character description supported by a source.",
+  "highlights": [
+    "REPLACE with one specific, evidenced feature"
+  ],
+  "location": {
+    "latitude": 0,
+    "longitude": 0,
+    "coordinateRole": "feature",
+    "address": {
+      "street": null,
+      "houseNumber": null,
+      "postcode": null,
+      "city": "Rome",
+      "region": "Lazio",
+      "country": "IT"
+    },
+    "neighborhood": null,
+    "locality": null,
+    "destinationIds": [
+      "it-rome"
+    ]
+  },
+  "tags": [
+    "hidden_gem",
+    "fresco"
+  ],
+  "tagRationales": {
+    "hidden_gem": "REPLACE with specific evidence-based reason why this place merits discovery."
+  },
+  "attributes": {
+    "indoorOutdoor": "indoor",
+    "entryType": "unknown",
+    "priceLevel": null,
+    "familyFriendly": null,
+    "historicalPeriods": []
+  },
+  "ratings": {
+    "google": null
+  },
+  "transit": null,
+  "links": {
+    "official": null,
+    "reference": "https://example.org/REPLACE-specific-place",
+    "googleMaps": "https://www.google.com/maps/place/REPLACE",
+    "googleImages": null
+  },
+  "media": {
+    "primaryImage": {
+      "url": "https://example.org/REPLACE-photo.jpg",
+      "sourcePageUrl": "https://example.org/REPLACE-image-source",
+      "license": "unknown",
+      "licenseUrl": null,
+      "creator": null,
+      "attribution": null
+    }
+  },
+  "relatedPeople": [],
+  "evidence": [
+    {
+      "sourceId": "REPLACE_SOURCE_ID",
+      "supports": [
+        "identity",
+        "location",
+        "description",
+        "hidden_gem_reason",
+        "image"
+      ]
+    }
+  ]
+}

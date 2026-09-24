@@ -1,0 +1,23 @@
+{
+  "benchmarkVersion": "1.0",
+  "applicationName": "Example POI Explorer",
+  "startCommand": "npm run dev",
+  "buildCommand": "npm run build",
+  "dataHandling": {
+    "uploadFormat": ["json"],
+    "processingLocation": "browser",
+    "remotePoiTransmission": false,
+    "additionalUploadBehavior": "user-choice",
+    "sourcePoiEditing": false,
+    "datasetDeletion": true,
+    "persistence": "none"
+  },
+  "bundledContent": {
+    "step2DatasetIncluded": false,
+    "poiCount": 0,
+    "poiImagesIncluded": false,
+    "description": "The production build starts without bundled POI records."
+  },
+  "mapProvider": null,
+  "notes": "Replace this example with the submission's actual settings."
+}

@@ -1,0 +1,1076 @@
+{
+  "metadata": {
+    "schemaVersion": "1.0.0",
+    "datasetVersion": "example-only",
+    "destinationId": "it-rome",
+    "generatedAt": "2026-09-20T20:00:00Z",
+    "language": "en",
+    "coordinateSystem": "WGS84"
+  },
+  "taxonomy": {
+    "categories": [
+      {
+        "id": "gastronomy",
+        "label": "Gastronomy",
+        "description": "Food and drink"
+      },
+      {
+        "id": "culture",
+        "label": "Culture & Heritage",
+        "description": "Built heritage, arts, history"
+      },
+      {
+        "id": "urban",
+        "label": "Urban Exploration",
+        "description": "City fabric and neighborhood orientation"
+      },
+      {
+        "id": "nature",
+        "label": "Parks & Nature",
+        "description": "Parks and natural destinations"
+      },
+      {
+        "id": "experiences",
+        "label": "Local Experiences",
+        "description": "Craft, shopping and cultural experiences"
+      },
+      {
+        "id": "transport",
+        "label": "Transport & Wayfinding",
+        "description": "Transport and mobility"
+      }
+    ],
+    "subcategories": [
+      {
+        "id": "restaurant",
+        "category": "gastronomy",
+        "label": "Restaurant",
+        "description": "restaurant POIs"
+      },
+      {
+        "id": "trattoria",
+        "category": "gastronomy",
+        "label": "Trattoria",
+        "description": "trattoria POIs"
+      },
+      {
+        "id": "osteria",
+        "category": "gastronomy",
+        "label": "Osteria",
+        "description": "osteria POIs"
+      },
+      {
+        "id": "pizzeria",
+        "category": "gastronomy",
+        "label": "Pizzeria",
+        "description": "pizzeria POIs"
+      },
+      {
+        "id": "pizza_al_taglio",
+        "category": "gastronomy",
+        "label": "Pizza Al Taglio",
+        "description": "pizza al taglio POIs"
+      },
+      {
+        "id": "street_food",
+        "category": "gastronomy",
+        "label": "Street Food",
+        "description": "street food POIs"
+      },
+      {
+        "id": "sandwich_shop",
+        "category": "gastronomy",
+        "label": "Sandwich Shop",
+        "description": "sandwich shop POIs"
+      },
+      {
+        "id": "bakery",
+        "category": "gastronomy",
+        "label": "Bakery",
+        "description": "bakery POIs"
+      },
+      {
+        "id": "pastry_shop",
+        "category": "gastronomy",
+        "label": "Pastry Shop",
+        "description": "pastry shop POIs"
+      },
+      {
+        "id": "gelateria",
+        "category": "gastronomy",
+        "label": "Gelateria",
+        "description": "gelateria POIs"
+      },
+      {
+        "id": "cafe",
+        "category": "gastronomy",
+        "label": "Cafe",
+        "description": "cafe POIs"
+      },
+      {
+        "id": "wine_bar",
+        "category": "gastronomy",
+        "label": "Wine Bar",
+        "description": "wine bar POIs"
+      },
+      {
+        "id": "aperitivo",
+        "category": "gastronomy",
+        "label": "Aperitivo",
+        "description": "aperitivo POIs"
+      },
+      {
+        "id": "food_market",
+        "category": "gastronomy",
+        "label": "Food Market",
+        "description": "food market POIs"
+      },
+      {
+        "id": "specialty_food",
+        "category": "gastronomy",
+        "label": "Specialty Food",
+        "description": "specialty food POIs"
+      },
+      {
+        "id": "ancient_roman",
+        "category": "culture",
+        "label": "Ancient Roman",
+        "description": "ancient roman POIs"
+      },
+      {
+        "id": "archaeological_site",
+        "category": "culture",
+        "label": "Archaeological Site",
+        "description": "archaeological site POIs"
+      },
+      {
+        "id": "underground",
+        "category": "culture",
+        "label": "Underground",
+        "description": "underground POIs"
+      },
+      {
+        "id": "church",
+        "category": "culture",
+        "label": "Church",
+        "description": "church POIs"
+      },
+      {
+        "id": "basilica",
+        "category": "culture",
+        "label": "Basilica",
+        "description": "basilica POIs"
+      },
+      {
+        "id": "chapel",
+        "category": "culture",
+        "label": "Chapel",
+        "description": "chapel POIs"
+      },
+      {
+        "id": "fountain",
+        "category": "culture",
+        "label": "Fountain",
+        "description": "fountain POIs"
+      },
+      {
+        "id": "monument",
+        "category": "culture",
+        "label": "Monument",
+        "description": "monument POIs"
+      },
+      {
+        "id": "museum",
+        "category": "culture",
+        "label": "Museum",
+        "description": "museum POIs"
+      },
+      {
+        "id": "gallery",
+        "category": "culture",
+        "label": "Gallery",
+        "description": "gallery POIs"
+      },
+      {
+        "id": "palace",
+        "category": "culture",
+        "label": "Palace",
+        "description": "palace POIs"
+      },
+      {
+        "id": "historic_building",
+        "category": "culture",
+        "label": "Historic Building",
+        "description": "historic building POIs"
+      },
+      {
+        "id": "historic_library",
+        "category": "culture",
+        "label": "Historic Library",
+        "description": "historic library POIs"
+      },
+      {
+        "id": "theatre",
+        "category": "culture",
+        "label": "Theatre",
+        "description": "theatre POIs"
+      },
+      {
+        "id": "ancient_gate",
+        "category": "culture",
+        "label": "Ancient Gate",
+        "description": "ancient gate POIs"
+      },
+      {
+        "id": "ancient_wall",
+        "category": "culture",
+        "label": "Ancient Wall",
+        "description": "ancient wall POIs"
+      },
+      {
+        "id": "architecture",
+        "category": "culture",
+        "label": "Architecture",
+        "description": "architecture POIs"
+      },
+      {
+        "id": "religious_heritage",
+        "category": "culture",
+        "label": "Religious Heritage",
+        "description": "religious heritage POIs"
+      },
+      {
+        "id": "piazza",
+        "category": "urban",
+        "label": "Piazza",
+        "description": "piazza POIs"
+      },
+      {
+        "id": "historic_street",
+        "category": "urban",
+        "label": "Historic Street",
+        "description": "historic street POIs"
+      },
+      {
+        "id": "neighborhood",
+        "category": "urban",
+        "label": "Neighborhood",
+        "description": "neighborhood POIs"
+      },
+      {
+        "id": "courtyard",
+        "category": "urban",
+        "label": "Courtyard",
+        "description": "courtyard POIs"
+      },
+      {
+        "id": "passage",
+        "category": "urban",
+        "label": "Passage",
+        "description": "passage POIs"
+      },
+      {
+        "id": "bridge",
+        "category": "urban",
+        "label": "Bridge",
+        "description": "bridge POIs"
+      },
+      {
+        "id": "riverfront",
+        "category": "urban",
+        "label": "Riverfront",
+        "description": "riverfront POIs"
+      },
+      {
+        "id": "street_art",
+        "category": "urban",
+        "label": "Street Art",
+        "description": "street art POIs"
+      },
+      {
+        "id": "architectural_detail",
+        "category": "urban",
+        "label": "Architectural Detail",
+        "description": "architectural detail POIs"
+      },
+      {
+        "id": "viewpoint",
+        "category": "urban",
+        "label": "Viewpoint",
+        "description": "viewpoint POIs"
+      },
+      {
+        "id": "pedestrian_area",
+        "category": "urban",
+        "label": "Pedestrian Area",
+        "description": "pedestrian area POIs"
+      },
+      {
+        "id": "park",
+        "category": "nature",
+        "label": "Park",
+        "description": "park POIs"
+      },
+      {
+        "id": "historic_garden",
+        "category": "nature",
+        "label": "Historic Garden",
+        "description": "historic garden POIs"
+      },
+      {
+        "id": "botanical_garden",
+        "category": "nature",
+        "label": "Botanical Garden",
+        "description": "botanical garden POIs"
+      },
+      {
+        "id": "villa_grounds",
+        "category": "nature",
+        "label": "Villa Grounds",
+        "description": "villa grounds POIs"
+      },
+      {
+        "id": "nature_reserve",
+        "category": "nature",
+        "label": "Nature Reserve",
+        "description": "nature reserve POIs"
+      },
+      {
+        "id": "green_viewpoint",
+        "category": "nature",
+        "label": "Green Viewpoint",
+        "description": "green viewpoint POIs"
+      },
+      {
+        "id": "waterfront",
+        "category": "nature",
+        "label": "Waterfront",
+        "description": "waterfront POIs"
+      },
+      {
+        "id": "beach",
+        "category": "nature",
+        "label": "Beach",
+        "description": "beach POIs"
+      },
+      {
+        "id": "cove",
+        "category": "nature",
+        "label": "Cove",
+        "description": "cove POIs"
+      },
+      {
+        "id": "cave",
+        "category": "nature",
+        "label": "Cave",
+        "description": "cave POIs"
+      },
+      {
+        "id": "mountain_peak",
+        "category": "nature",
+        "label": "Mountain Peak",
+        "description": "mountain peak POIs"
+      },
+      {
+        "id": "waterfall",
+        "category": "nature",
+        "label": "Waterfall",
+        "description": "waterfall POIs"
+      },
+      {
+        "id": "hiking_trail",
+        "category": "nature",
+        "label": "Hiking Trail",
+        "description": "hiking trail POIs"
+      },
+      {
+        "id": "artisan_workshop",
+        "category": "experiences",
+        "label": "Artisan Workshop",
+        "description": "artisan workshop POIs"
+      },
+      {
+        "id": "historic_shop",
+        "category": "experiences",
+        "label": "Historic Shop",
+        "description": "historic shop POIs"
+      },
+      {
+        "id": "bookshop",
+        "category": "experiences",
+        "label": "Bookshop",
+        "description": "bookshop POIs"
+      },
+      {
+        "id": "cinema",
+        "category": "experiences",
+        "label": "Cinema",
+        "description": "cinema POIs"
+      },
+      {
+        "id": "music_venue",
+        "category": "experiences",
+        "label": "Music Venue",
+        "description": "music venue POIs"
+      },
+      {
+        "id": "cultural_center",
+        "category": "experiences",
+        "label": "Cultural Center",
+        "description": "cultural center POIs"
+      },
+      {
+        "id": "flea_market",
+        "category": "experiences",
+        "label": "Flea Market",
+        "description": "flea market POIs"
+      },
+      {
+        "id": "antique_shop",
+        "category": "experiences",
+        "label": "Antique Shop",
+        "description": "antique shop POIs"
+      },
+      {
+        "id": "unusual_experience",
+        "category": "experiences",
+        "label": "Unusual Experience",
+        "description": "unusual experience POIs"
+      },
+      {
+        "id": "metro_station",
+        "category": "transport",
+        "label": "Metro Station",
+        "description": "metro station POIs"
+      },
+      {
+        "id": "railway_station",
+        "category": "transport",
+        "label": "Railway Station",
+        "description": "railway station POIs"
+      },
+      {
+        "id": "tram_stop",
+        "category": "transport",
+        "label": "Tram Stop",
+        "description": "tram stop POIs"
+      },
+      {
+        "id": "bus_terminal",
+        "category": "transport",
+        "label": "Bus Terminal",
+        "description": "bus terminal POIs"
+      },
+      {
+        "id": "transport_interchange",
+        "category": "transport",
+        "label": "Transport Interchange",
+        "description": "transport interchange POIs"
+      },
+      {
+        "id": "airport_connection",
+        "category": "transport",
+        "label": "Airport Connection",
+        "description": "airport connection POIs"
+      },
+      {
+        "id": "ferry_terminal",
+        "category": "transport",
+        "label": "Ferry Terminal",
+        "description": "ferry terminal POIs"
+      }
+    ],
+    "tags": [
+      {
+        "id": "hidden_gem",
+        "label": "Hidden Gem",
+        "group": "discovery",
+        "description": "hidden gem thematic filter"
+      },
+      {
+        "id": "iconic_landmark",
+        "label": "Iconic Landmark",
+        "group": "discovery",
+        "description": "iconic landmark thematic filter"
+      },
+      {
+        "id": "local_favorite",
+        "label": "Local Favorite",
+        "group": "discovery",
+        "description": "local favorite thematic filter"
+      },
+      {
+        "id": "unusual",
+        "label": "Unusual",
+        "group": "discovery",
+        "description": "unusual thematic filter"
+      },
+      {
+        "id": "off_the_beaten_path",
+        "label": "Off The Beaten Path",
+        "group": "discovery",
+        "description": "off the beaten path thematic filter"
+      },
+      {
+        "id": "romantic",
+        "label": "Romantic",
+        "group": "atmosphere",
+        "description": "romantic thematic filter"
+      },
+      {
+        "id": "quiet_spot",
+        "label": "Quiet Spot",
+        "group": "atmosphere",
+        "description": "quiet spot thematic filter"
+      },
+      {
+        "id": "lively",
+        "label": "Lively",
+        "group": "atmosphere",
+        "description": "lively thematic filter"
+      },
+      {
+        "id": "photogenic",
+        "label": "Photogenic",
+        "group": "atmosphere",
+        "description": "photogenic thematic filter"
+      },
+      {
+        "id": "authentic",
+        "label": "Authentic",
+        "group": "atmosphere",
+        "description": "authentic thematic filter"
+      },
+      {
+        "id": "sunrise",
+        "label": "Sunrise",
+        "group": "time",
+        "description": "sunrise thematic filter"
+      },
+      {
+        "id": "sunset",
+        "label": "Sunset",
+        "group": "time",
+        "description": "sunset thematic filter"
+      },
+      {
+        "id": "evening",
+        "label": "Evening",
+        "group": "time",
+        "description": "evening thematic filter"
+      },
+      {
+        "id": "nightlife",
+        "label": "Nightlife",
+        "group": "time",
+        "description": "nightlife thematic filter"
+      },
+      {
+        "id": "lunch",
+        "label": "Lunch",
+        "group": "time",
+        "description": "lunch thematic filter"
+      },
+      {
+        "id": "dinner",
+        "label": "Dinner",
+        "group": "time",
+        "description": "dinner thematic filter"
+      },
+      {
+        "id": "free_entry",
+        "label": "Free Entry",
+        "group": "access",
+        "description": "free entry thematic filter"
+      },
+      {
+        "id": "paid_entry",
+        "label": "Paid Entry",
+        "group": "access",
+        "description": "paid entry thematic filter"
+      },
+      {
+        "id": "reservation_required",
+        "label": "Reservation Required",
+        "group": "access",
+        "description": "reservation required thematic filter"
+      },
+      {
+        "id": "wheelchair_accessible",
+        "label": "Wheelchair Accessible",
+        "group": "access",
+        "description": "wheelchair accessible thematic filter"
+      },
+      {
+        "id": "family_friendly",
+        "label": "Family Friendly",
+        "group": "family",
+        "description": "family friendly thematic filter"
+      },
+      {
+        "id": "stroller_friendly",
+        "label": "Stroller Friendly",
+        "group": "family",
+        "description": "stroller friendly thematic filter"
+      },
+      {
+        "id": "playground",
+        "label": "Playground",
+        "group": "family",
+        "description": "playground thematic filter"
+      },
+      {
+        "id": "indoor",
+        "label": "Indoor",
+        "group": "weather",
+        "description": "indoor thematic filter"
+      },
+      {
+        "id": "outdoor",
+        "label": "Outdoor",
+        "group": "weather",
+        "description": "outdoor thematic filter"
+      },
+      {
+        "id": "rainy_day",
+        "label": "Rainy Day",
+        "group": "weather",
+        "description": "rainy day thematic filter"
+      },
+      {
+        "id": "shaded",
+        "label": "Shaded",
+        "group": "weather",
+        "description": "shaded thematic filter"
+      },
+      {
+        "id": "walking",
+        "label": "Walking",
+        "group": "activity",
+        "description": "walking thematic filter"
+      },
+      {
+        "id": "cycling",
+        "label": "Cycling",
+        "group": "activity",
+        "description": "cycling thematic filter"
+      },
+      {
+        "id": "shopping",
+        "label": "Shopping",
+        "group": "activity",
+        "description": "shopping thematic filter"
+      },
+      {
+        "id": "food_tasting",
+        "label": "Food Tasting",
+        "group": "activity",
+        "description": "food tasting thematic filter"
+      },
+      {
+        "id": "photography",
+        "label": "Photography",
+        "group": "activity",
+        "description": "photography thematic filter"
+      },
+      {
+        "id": "hiking",
+        "label": "Hiking",
+        "group": "activity",
+        "description": "hiking thematic filter"
+      },
+      {
+        "id": "swimming",
+        "label": "Swimming",
+        "group": "activity",
+        "description": "swimming thematic filter"
+      },
+      {
+        "id": "ancient_rome",
+        "label": "Ancient Rome",
+        "group": "period",
+        "description": "ancient rome thematic filter"
+      },
+      {
+        "id": "medieval",
+        "label": "Medieval",
+        "group": "period",
+        "description": "medieval thematic filter"
+      },
+      {
+        "id": "renaissance",
+        "label": "Renaissance",
+        "group": "period",
+        "description": "renaissance thematic filter"
+      },
+      {
+        "id": "baroque",
+        "label": "Baroque",
+        "group": "period",
+        "description": "baroque thematic filter"
+      },
+      {
+        "id": "neoclassical",
+        "label": "Neoclassical",
+        "group": "period",
+        "description": "neoclassical thematic filter"
+      },
+      {
+        "id": "modern",
+        "label": "Modern",
+        "group": "period",
+        "description": "modern thematic filter"
+      },
+      {
+        "id": "painting",
+        "label": "Painting",
+        "group": "art",
+        "description": "painting thematic filter"
+      },
+      {
+        "id": "fresco",
+        "label": "Fresco",
+        "group": "art",
+        "description": "fresco thematic filter"
+      },
+      {
+        "id": "mosaic",
+        "label": "Mosaic",
+        "group": "art",
+        "description": "mosaic thematic filter"
+      },
+      {
+        "id": "sculpture",
+        "label": "Sculpture",
+        "group": "art",
+        "description": "sculpture thematic filter"
+      },
+      {
+        "id": "architecture",
+        "label": "Architecture",
+        "group": "art",
+        "description": "architecture thematic filter"
+      },
+      {
+        "id": "decorative_arts",
+        "label": "Decorative Arts",
+        "group": "art",
+        "description": "decorative arts thematic filter"
+      },
+      {
+        "id": "ceiling_fresco",
+        "label": "Ceiling Fresco",
+        "group": "art",
+        "description": "ceiling fresco thematic filter"
+      },
+      {
+        "id": "sacred_art",
+        "label": "Sacred Art",
+        "group": "art",
+        "description": "sacred art thematic filter"
+      },
+      {
+        "id": "interior_highlight",
+        "label": "Interior Highlight",
+        "group": "art",
+        "description": "interior highlight thematic filter"
+      },
+      {
+        "id": "caravaggio",
+        "label": "Caravaggio",
+        "group": "artists",
+        "description": "caravaggio thematic filter"
+      },
+      {
+        "id": "bernini",
+        "label": "Bernini",
+        "group": "artists",
+        "description": "bernini thematic filter"
+      },
+      {
+        "id": "michelangelo",
+        "label": "Michelangelo",
+        "group": "artists",
+        "description": "michelangelo thematic filter"
+      },
+      {
+        "id": "raphael",
+        "label": "Raphael",
+        "group": "artists",
+        "description": "raphael thematic filter"
+      },
+      {
+        "id": "borromini",
+        "label": "Borromini",
+        "group": "artists",
+        "description": "borromini thematic filter"
+      },
+      {
+        "id": "roman_ruins",
+        "label": "Roman Ruins",
+        "group": "archaeology",
+        "description": "roman ruins thematic filter"
+      },
+      {
+        "id": "roman_baths",
+        "label": "Roman Baths",
+        "group": "archaeology",
+        "description": "roman baths thematic filter"
+      },
+      {
+        "id": "catacombs",
+        "label": "Catacombs",
+        "group": "archaeology",
+        "description": "catacombs thematic filter"
+      },
+      {
+        "id": "crypt",
+        "label": "Crypt",
+        "group": "archaeology",
+        "description": "crypt thematic filter"
+      },
+      {
+        "id": "underground_archaeology",
+        "label": "Underground Archaeology",
+        "group": "archaeology",
+        "description": "underground archaeology thematic filter"
+      },
+      {
+        "id": "roman_cuisine",
+        "label": "Roman Cuisine",
+        "group": "food",
+        "description": "roman cuisine thematic filter"
+      },
+      {
+        "id": "traditional",
+        "label": "Traditional",
+        "group": "food",
+        "description": "traditional thematic filter"
+      },
+      {
+        "id": "carbonara",
+        "label": "Carbonara",
+        "group": "food",
+        "description": "carbonara thematic filter"
+      },
+      {
+        "id": "amatriciana",
+        "label": "Amatriciana",
+        "group": "food",
+        "description": "amatriciana thematic filter"
+      },
+      {
+        "id": "cacio_e_pepe",
+        "label": "Cacio E Pepe",
+        "group": "food",
+        "description": "cacio e pepe thematic filter"
+      },
+      {
+        "id": "gricia",
+        "label": "Gricia",
+        "group": "food",
+        "description": "gricia thematic filter"
+      },
+      {
+        "id": "roman_pizza",
+        "label": "Roman Pizza",
+        "group": "food",
+        "description": "roman pizza thematic filter"
+      },
+      {
+        "id": "neapolitan_pizza",
+        "label": "Neapolitan Pizza",
+        "group": "food",
+        "description": "neapolitan pizza thematic filter"
+      },
+      {
+        "id": "pizza_al_taglio",
+        "label": "Pizza Al Taglio",
+        "group": "food",
+        "description": "pizza al taglio thematic filter"
+      },
+      {
+        "id": "suppli",
+        "label": "Suppli",
+        "group": "food",
+        "description": "suppli thematic filter"
+      },
+      {
+        "id": "trapizzino",
+        "label": "Trapizzino",
+        "group": "food",
+        "description": "trapizzino thematic filter"
+      },
+      {
+        "id": "porchetta",
+        "label": "Porchetta",
+        "group": "food",
+        "description": "porchetta thematic filter"
+      },
+      {
+        "id": "panini",
+        "label": "Panini",
+        "group": "food",
+        "description": "panini thematic filter"
+      },
+      {
+        "id": "breakfast",
+        "label": "Breakfast",
+        "group": "food",
+        "description": "breakfast thematic filter"
+      },
+      {
+        "id": "maritozzo",
+        "label": "Maritozzo",
+        "group": "food",
+        "description": "maritozzo thematic filter"
+      },
+      {
+        "id": "cornetto",
+        "label": "Cornetto",
+        "group": "food",
+        "description": "cornetto thematic filter"
+      },
+      {
+        "id": "specialty_coffee",
+        "label": "Specialty Coffee",
+        "group": "food",
+        "description": "specialty coffee thematic filter"
+      },
+      {
+        "id": "espresso",
+        "label": "Espresso",
+        "group": "food",
+        "description": "espresso thematic filter"
+      },
+      {
+        "id": "natural_wine",
+        "label": "Natural Wine",
+        "group": "food",
+        "description": "natural wine thematic filter"
+      },
+      {
+        "id": "aperitivo",
+        "label": "Aperitivo",
+        "group": "food",
+        "description": "aperitivo thematic filter"
+      },
+      {
+        "id": "vegetarian",
+        "label": "Vegetarian",
+        "group": "food",
+        "description": "vegetarian thematic filter"
+      },
+      {
+        "id": "vegan",
+        "label": "Vegan",
+        "group": "food",
+        "description": "vegan thematic filter"
+      },
+      {
+        "id": "gluten_free_options",
+        "label": "Gluten Free Options",
+        "group": "food",
+        "description": "gluten free options thematic filter"
+      },
+      {
+        "id": "quick_bite",
+        "label": "Quick Bite",
+        "group": "food",
+        "description": "quick bite thematic filter"
+      },
+      {
+        "id": "fine_dining",
+        "label": "Fine Dining",
+        "group": "food",
+        "description": "fine dining thematic filter"
+      },
+      {
+        "id": "panoramic_view",
+        "label": "Panoramic View",
+        "group": "nature",
+        "description": "panoramic view thematic filter"
+      },
+      {
+        "id": "picnic",
+        "label": "Picnic",
+        "group": "nature",
+        "description": "picnic thematic filter"
+      },
+      {
+        "id": "beach",
+        "label": "Beach",
+        "group": "nature",
+        "description": "beach thematic filter"
+      },
+      {
+        "id": "waterfall",
+        "label": "Waterfall",
+        "group": "nature",
+        "description": "waterfall thematic filter"
+      },
+      {
+        "id": "mountain_peak",
+        "label": "Mountain Peak",
+        "group": "nature",
+        "description": "mountain peak thematic filter"
+      },
+      {
+        "id": "wildlife",
+        "label": "Wildlife",
+        "group": "nature",
+        "description": "wildlife thematic filter"
+      },
+      {
+        "id": "garden",
+        "label": "Garden",
+        "group": "nature",
+        "description": "garden thematic filter"
+      },
+      {
+        "id": "coastal_view",
+        "label": "Coastal View",
+        "group": "nature",
+        "description": "coastal view thematic filter"
+      },
+      {
+        "id": "local_experience",
+        "label": "Local Experience",
+        "group": "experiences",
+        "description": "local experience thematic filter"
+      },
+      {
+        "id": "artisan",
+        "label": "Artisan",
+        "group": "experiences",
+        "description": "artisan thematic filter"
+      },
+      {
+        "id": "historic_establishment",
+        "label": "Historic Establishment",
+        "group": "experiences",
+        "description": "historic establishment thematic filter"
+      },
+      {
+        "id": "live_music",
+        "label": "Live Music",
+        "group": "experiences",
+        "description": "live music thematic filter"
+      },
+      {
+        "id": "vintage",
+        "label": "Vintage",
+        "group": "experiences",
+        "description": "vintage thematic filter"
+      },
+      {
+        "id": "food_market",
+        "label": "Food Market",
+        "group": "experiences",
+        "description": "food market thematic filter"
+      }
+    ]
+  },
+  "sources": [],
+  "pois": []
+}

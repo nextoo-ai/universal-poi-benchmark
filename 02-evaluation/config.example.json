@@ -1,0 +1,15 @@
+{
+  "matching": {
+    "exact_name_distance_m": 75.0,
+    "fuzzy_name_distance_m": 250.0,
+    "fuzzy_name_threshold": 0.86
+  },
+  "url_validation": {
+    "timeout_seconds": 10.0,
+    "max_redirects": 5,
+    "user_agent": "poi-evaluator/0.1 (+https://example.invalid)",
+    "max_body_bytes": 65536,
+    "workers": 16,
+    "per_host": 4
+  }
+}

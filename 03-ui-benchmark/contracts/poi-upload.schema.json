@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nextoo.io/schemas/poi-ui-upload-v1.json",
+  "title": "POI UI upload v1",
+  "type": "object",
+  "required": ["pois"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": { "type": "string" },
+        "datasetVersion": { "type": "string" },
+        "destinationId": { "type": "string" },
+        "language": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "pois": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/poi" }
+    }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "poi": {
+      "type": "object",
+      "required": ["id", "name", "category", "location"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "name": { "type": "string", "minLength": 1 },
+        "category": { "type": "string", "minLength": 1 },
+        "subcategory": { "type": ["string", "null"] },
+        "description": { "type": ["string", "null"] },
+        "alternateNames": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "location": {
+          "type": "object",
+          "required": ["latitude", "longitude"],
+          "properties": {
+            "latitude": { "type": "number", "minimum": -90, "maximum": 90 },
+            "longitude": { "type": "number", "minimum": -180, "maximum": 180 },
+            "locality": { "type": ["string", "null"] },
+            "neighborhood": { "type": ["string", "null"] },
+            "address": { "type": ["object", "string", "null"] }
+          },
+          "additionalProperties": true
+        },
+        "links": { "type": ["object", "array", "null"] },
+        "media": { "type": ["object", "array", "null"] },
+        "ratings": { "type": ["object", "array", "null"] }
+      },
+      "additionalProperties": true
+    }
+  }
+}

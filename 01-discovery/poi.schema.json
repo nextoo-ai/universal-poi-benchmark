@@ -1,0 +1,849 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/universal-poi-discovery/poi.schema.json",
+  "title": "Universal POI Discovery Dataset v1",
+  "description": "Data contract only. Dataset completeness, authenticity, coverage, and URL reachability require external validation.",
+  "type": "object",
+  "required": [
+    "metadata",
+    "taxonomy",
+    "sources",
+    "pois"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "const": "1.0.0"
+        },
+        "datasetVersion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "destinationId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "generatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "language": {
+          "type": "string",
+          "pattern": "^[a-z]{2}$"
+        },
+        "coordinateSystem": {
+          "const": "WGS84"
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "datasetVersion",
+        "destinationId",
+        "generatedAt",
+        "language",
+        "coordinateSystem"
+      ],
+      "additionalProperties": false
+    },
+    "taxonomy": {
+      "type": "object",
+      "properties": {
+        "categories": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/taxonomyCategory"
+          },
+          "minItems": 1
+        },
+        "subcategories": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/taxonomySubcategory"
+          },
+          "minItems": 1
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/taxonomyTag"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "categories",
+        "subcategories",
+        "tags"
+      ],
+      "additionalProperties": false
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/source"
+      },
+      "minItems": 0
+    },
+    "pois": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/poi"
+      },
+      "minItems": 0
+    }
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "provider": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "enum": [
+            "official",
+            "structured_data",
+            "openstreetmap",
+            "institutional",
+            "editorial",
+            "other"
+          ]
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https?://"
+        },
+        "retrievedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "provider",
+        "type",
+        "url",
+        "retrievedAt"
+      ],
+      "additionalProperties": false
+    },
+    "taxonomyCategory": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "description"
+      ],
+      "additionalProperties": false
+    },
+    "taxonomySubcategory": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "category": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "category",
+        "label",
+        "description"
+      ],
+      "additionalProperties": false
+    },
+    "taxonomyTag": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "group": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "group",
+        "description"
+      ],
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "object",
+      "properties": {
+        "sourceId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "supports": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "identity",
+              "location",
+              "category",
+              "description",
+              "hidden_gem_reason",
+              "transit",
+              "attributes",
+              "rating",
+              "image",
+              "related_person"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "sourceId",
+        "supports"
+      ],
+      "additionalProperties": false
+    },
+    "address": {
+      "type": "object",
+      "properties": {
+        "street": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "houseNumber": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "postcode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "city": {
+          "type": "string",
+          "minLength": 1
+        },
+        "region": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "country": {
+          "type": "string",
+          "pattern": "^[A-Z]{2}$"
+        }
+      },
+      "required": [
+        "street",
+        "houseNumber",
+        "postcode",
+        "city",
+        "region",
+        "country"
+      ],
+      "additionalProperties": false
+    },
+    "location": {
+      "type": "object",
+      "properties": {
+        "latitude": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
+        },
+        "longitude": {
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
+        },
+        "coordinateRole": {
+          "enum": [
+            "entrance",
+            "feature",
+            "centroid",
+            "approximate"
+          ]
+        },
+        "address": {
+          "$ref": "#/$defs/address"
+        },
+        "neighborhood": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "locality": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "destinationIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "latitude",
+        "longitude",
+        "coordinateRole",
+        "address",
+        "neighborhood",
+        "locality",
+        "destinationIds"
+      ],
+      "additionalProperties": false
+    },
+    "googleRating": {
+      "type": "object",
+      "properties": {
+        "score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 5
+        },
+        "reviewCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "verifiedAt": {
+          "type": "string",
+          "format": "date"
+        },
+        "sourceUrl": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https?://"
+        }
+      },
+      "required": [
+        "score",
+        "reviewCount",
+        "verifiedAt",
+        "sourceUrl"
+      ],
+      "additionalProperties": false
+    },
+    "ratings": {
+      "type": "object",
+      "properties": {
+        "google": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/googleRating"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "google"
+      ],
+      "additionalProperties": false
+    },
+    "primaryImage": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https?://"
+        },
+        "sourcePageUrl": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https?://"
+        },
+        "license": {
+          "type": "string",
+          "minLength": 1
+        },
+        "licenseUrl": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^https?://"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "creator": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "attribution": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "url",
+        "sourcePageUrl",
+        "license",
+        "licenseUrl",
+        "creator",
+        "attribution"
+      ],
+      "additionalProperties": false
+    },
+    "links": {
+      "type": "object",
+      "properties": {
+        "official": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^https?://"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reference": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https?://"
+        },
+        "googleMaps": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https?://"
+        },
+        "googleImages": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^https?://"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "official",
+        "reference",
+        "googleMaps",
+        "googleImages"
+      ],
+      "additionalProperties": false
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "indoorOutdoor": {
+          "enum": [
+            "indoor",
+            "outdoor",
+            "mixed",
+            "unknown"
+          ]
+        },
+        "entryType": {
+          "enum": [
+            "free",
+            "paid",
+            "mixed",
+            "unknown"
+          ]
+        },
+        "priceLevel": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 4
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "familyFriendly": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "historicalPeriods": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "indoorOutdoor",
+        "entryType",
+        "priceLevel",
+        "familyFriendly",
+        "historicalPeriods"
+      ],
+      "additionalProperties": false
+    },
+    "transit": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "enum": [
+            "metro",
+            "rail",
+            "tram",
+            "bus",
+            "ferry",
+            "airport",
+            "other"
+          ]
+        },
+        "lines": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "isInterchange": {
+          "type": "boolean"
+        },
+        "airportConnection": {
+          "type": "boolean"
+        },
+        "operator": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "mode",
+        "lines",
+        "isInterchange",
+        "airportConnection",
+        "operator"
+      ],
+      "additionalProperties": false
+    },
+    "person": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "wikidataId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "relation": {
+          "enum": [
+            "artist",
+            "architect",
+            "historical_figure",
+            "founder",
+            "patron",
+            "other"
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "wikidataId",
+        "relation"
+      ],
+      "additionalProperties": false
+    },
+    "poi": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9:_-]+$"
+        },
+        "externalIds": {
+          "type": "object",
+          "properties": {
+            "wikidata": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "osmType": {
+              "enum": [
+                "node",
+                "way",
+                "relation",
+                null
+              ]
+            },
+            "osmId": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "wikidata",
+            "osmType",
+            "osmId"
+          ],
+          "additionalProperties": false
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "alternateNames": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "category": {
+          "type": "string",
+          "minLength": 1
+        },
+        "subcategory": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 40,
+          "maxLength": 500
+        },
+        "highlights": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 180
+          },
+          "minItems": 1,
+          "maxItems": 4
+        },
+        "location": {
+          "$ref": "#/$defs/location"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "tagRationales": {
+          "type": "object",
+          "propertyNames": {
+            "minLength": 1
+          },
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 20
+          }
+        },
+        "attributes": {
+          "$ref": "#/$defs/attributes"
+        },
+        "ratings": {
+          "$ref": "#/$defs/ratings"
+        },
+        "transit": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/transit"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "links": {
+          "$ref": "#/$defs/links"
+        },
+        "media": {
+          "type": "object",
+          "properties": {
+            "primaryImage": {
+              "$ref": "#/$defs/primaryImage"
+            }
+          },
+          "required": [
+            "primaryImage"
+          ],
+          "additionalProperties": false
+        },
+        "relatedPeople": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/person"
+          },
+          "minItems": 0
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "id",
+        "externalIds",
+        "name",
+        "alternateNames",
+        "category",
+        "subcategory",
+        "description",
+        "highlights",
+        "location",
+        "tags",
+        "tagRationales",
+        "attributes",
+        "ratings",
+        "transit",
+        "links",
+        "media",
+        "relatedPeople",
+        "evidence"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "category": {
+                "const": "transport"
+              }
+            },
+            "required": [
+              "category"
+            ]
+          },
+          "then": {
+            "properties": {
+              "transit": {
+                "$ref": "#/$defs/transit"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "transit": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "tags": {
+                "contains": {
+                  "const": "hidden_gem"
+                }
+              }
+            },
+            "required": [
+              "tags"
+            ]
+          },
+          "then": {
+            "properties": {
+              "tagRationales": {
+                "required": [
+                  "hidden_gem"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

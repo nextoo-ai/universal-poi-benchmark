@@ -1,0 +1,59 @@
+{
+  "metadata": {
+    "schemaVersion": "1.0",
+    "datasetVersion": "synthetic-safe-demo-1",
+    "destinationId": "it-rome",
+    "language": "en",
+    "synthetic": true
+  },
+  "pois": [
+    {
+      "id": "demo-01",
+      "name": "Demo Forum Point",
+      "category": "history",
+      "description": "A synthetic record created only to test the POI upload experience.",
+      "tags": ["outdoor", "historic_area"],
+      "location": { "latitude": 41.8925, "longitude": 12.4853, "locality": "Rome" }
+    },
+    {
+      "id": "demo-02",
+      "name": "Demo Riverside Walk",
+      "category": "outdoors",
+      "description": "A synthetic riverside place with no associated photograph or external content.",
+      "tags": ["walk", "outdoor"],
+      "location": { "latitude": 41.9007, "longitude": 12.4662, "locality": "Rome" }
+    },
+    {
+      "id": "demo-03",
+      "name": "Demo Civic Gallery",
+      "category": "culture",
+      "description": "A fictional gallery record used to exercise category and detail interfaces.",
+      "tags": ["indoor", "art"],
+      "location": { "latitude": 41.9061, "longitude": 12.4828, "locality": "Rome" }
+    },
+    {
+      "id": "demo-04",
+      "name": "Demo Garden Terrace",
+      "category": "parks",
+      "description": "A synthetic green-space record for interface demonstrations.",
+      "tags": ["garden", "viewpoint"],
+      "location": { "latitude": 41.9142, "longitude": 12.4799, "locality": "Rome" }
+    },
+    {
+      "id": "demo-05",
+      "name": "Demo Market Hall",
+      "category": "food",
+      "description": "A fictional market record containing no licensed media or sourced description.",
+      "tags": ["market", "indoor"],
+      "location": { "latitude": 41.8814, "longitude": 12.4758, "locality": "Rome" }
+    },
+    {
+      "id": "demo-06",
+      "name": "Demo Architecture Stop",
+      "category": "architecture",
+      "description": "A synthetic point created to test marker selection and place details.",
+      "tags": ["architecture", "outdoor"],
+      "location": { "latitude": 41.8983, "longitude": 12.5037, "locality": "Rome" }
+    }
+  ]
+}

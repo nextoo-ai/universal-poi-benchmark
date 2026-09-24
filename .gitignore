@@ -1,0 +1,17 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+*.sqlite
+*.sqlite3
+*.sqlite-*
+
+# Private benchmark inputs and generated results
+**/inputs/
+**/outputs/*
+!**/outputs/.gitkeep
+01-discovery/pois.json
+03-ui-benchmark/development-data/*
+!03-ui-benchmark/development-data/README.md

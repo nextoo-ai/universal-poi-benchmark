@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "1.0",
+  "datasetVersion": "demo-b",
+  "language": "en",
+  "region": {"name": "Example City"},
+  "pois": [
+    {
+      "id": "b-old-clock",
+      "name": "Old Clock-Tower",
+      "description": "The central square's historic tower has a public viewing level.",
+      "category": "culture_heritage",
+      "subcategory": "historic_building",
+      "latitude": 48.14861,
+      "longitude": 17.10769,
+      "external_ids": {"wikidata": "Q123456"},
+      "tags": ["historic architecture"],
+      "links": {"reference": "https://example.org/old-clock-tower"}
+    }
+  ]
+}

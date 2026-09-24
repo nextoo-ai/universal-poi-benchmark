@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/poi-evaluator/llm-review-request.schema.json",
+  "title": "POI qualitative review request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["reviewId", "reviewType", "poi", "evidence"],
+  "properties": {
+    "reviewId": {"type": "string", "minLength": 1},
+    "reviewType": {
+      "enum": ["identity", "factual_accuracy", "description_quality", "taxonomy", "media_relevance"]
+    },
+    "blindSubmissionLabel": {"type": ["string", "null"]},
+    "poi": {"type": "object"},
+    "comparisonPois": {"type": "array", "items": {"type": "object"}, "default": []},
+    "evidence": {"type": "array", "items": {"type": "object"}},
+    "instructionsVersion": {"type": "string", "default": "1.0"}
+  }
+}

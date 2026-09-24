@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+pois.json
+# Discovery agent owns the actual output; benchmark package does not ship fabricated places.

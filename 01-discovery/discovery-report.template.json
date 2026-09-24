@@ -1,0 +1,27 @@
+{
+  "benchmarkId": "universal-poi-discovery/rome/v1",
+  "datasetVersion": null,
+  "generatedAt": null,
+  "status": "not_run",
+  "automated": {
+    "passed": null,
+    "errors": [],
+    "warnings": [],
+    "counts": {
+      "total": null,
+      "byCategory": {},
+      "byTag": {},
+      "bySubcategory": {}
+    },
+    "ratingCoverage": null,
+    "imageLicenseUnknownCount": null
+  },
+  "manualReview": {
+    "status": "not_started",
+    "sampleSize": null,
+    "findings": []
+  },
+  "limitations": [
+    "Automated checks cannot establish factual existence, URL reachability, correct image identity, rights clearance or source accuracy."
+  ]
+}
