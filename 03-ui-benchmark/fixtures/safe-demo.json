@@ -13,7 +13,16 @@
       "category": "history",
       "description": "A synthetic record created only to test the POI upload experience.",
       "tags": ["outdoor", "historic_area"],
-      "location": { "latitude": 41.8925, "longitude": 12.4853, "locality": "Rome" }
+      "location": { "latitude": 41.8925, "longitude": 12.4853, "locality": "Rome" },
+      "ratings": [
+        {
+          "provider": "demo-five-star",
+          "value": 4.4,
+          "scale": { "min": 0, "max": 5 },
+          "normalizedScore": 0.88
+        }
+      ],
+      "media": []
     },
     {
       "id": "demo-02",
@@ -21,7 +30,9 @@
       "category": "outdoors",
       "description": "A synthetic riverside place with no associated photograph or external content.",
       "tags": ["walk", "outdoor"],
-      "location": { "latitude": 41.9007, "longitude": 12.4662, "locality": "Rome" }
+      "location": { "latitude": 41.9007, "longitude": 12.4662, "locality": "Rome" },
+      "ratings": [],
+      "media": []
     },
     {
       "id": "demo-03",
@@ -29,7 +40,16 @@
       "category": "culture",
       "description": "A fictional gallery record used to exercise category and detail interfaces.",
       "tags": ["indoor", "art"],
-      "location": { "latitude": 41.9061, "longitude": 12.4828, "locality": "Rome" }
+      "location": { "latitude": 41.9061, "longitude": 12.4828, "locality": "Rome" },
+      "ratings": [
+        {
+          "provider": "demo-ten-point",
+          "value": 8.7,
+          "scale": { "min": 0, "max": 10 },
+          "normalizedScore": 0.87
+        }
+      ],
+      "media": []
     },
     {
       "id": "demo-04",
@@ -37,7 +57,9 @@
       "category": "parks",
       "description": "A synthetic green-space record for interface demonstrations.",
       "tags": ["garden", "viewpoint"],
-      "location": { "latitude": 41.9142, "longitude": 12.4799, "locality": "Rome" }
+      "location": { "latitude": 41.9142, "longitude": 12.4799, "locality": "Rome" },
+      "ratings": [],
+      "media": []
     },
     {
       "id": "demo-05",
@@ -45,7 +67,9 @@
       "category": "food",
       "description": "A fictional market record containing no licensed media or sourced description.",
       "tags": ["market", "indoor"],
-      "location": { "latitude": 41.8814, "longitude": 12.4758, "locality": "Rome" }
+      "location": { "latitude": 41.8814, "longitude": 12.4758, "locality": "Rome" },
+      "ratings": [],
+      "media": []
     },
     {
       "id": "demo-06",
@@ -53,7 +77,9 @@
       "category": "architecture",
       "description": "A synthetic point created to test marker selection and place details.",
       "tags": ["architecture", "outdoor"],
-      "location": { "latitude": 41.8983, "longitude": 12.5037, "locality": "Rome" }
+      "location": { "latitude": 41.8983, "longitude": 12.5037, "locality": "Rome" },
+      "ratings": [],
+      "media": []
     }
   ]
 }

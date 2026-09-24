@@ -18,9 +18,11 @@ Two data boundaries are fundamental:
    Rome is a fallback and a playful reference to “All roads lead to Rome,” not the
    application's fixed destination.
 
-This separation prevents the benchmark application from redistributing POI media.
-The application may ignore media completely. If it supports media from a user-loaded
-file, those resources remain the user's input and are not bundled with the product.
+This separation prevents the benchmark application from redistributing development
+POI media. Media and ratings remain part of the upload contract but are optional per
+POI. The application must handle records with and without them, display available
+values appropriately, and keep missing values distinct from a zero rating or a broken
+image.
 
 ## Package contents
 
@@ -31,7 +33,7 @@ file, those resources remain the user's input and are not bundled with the produ
 - `contracts/poi-upload.schema.json` — portable JSON upload format.
 - `contracts/submission-manifest.schema.json` — declaration included with a result.
 - `fixtures/safe-demo.json` — optional synthetic, image-free sample file. It is not
-  preloaded by the application.
+preloaded by the application.
 - `development-data/README.md` — placement and non-distribution rules for the merged
   Step 2 dataset.
 
@@ -42,6 +44,11 @@ records are read-only, but the user can load another dataset. The product design
 may replace the active dataset, merge multiple datasets, or offer both choices. The
 user works through filters, visibility controls, and a personal itinerary layer
 rather than editing source POIs directly.
+
+The UI accepts both safe and detailed canonical profiles. A safe profile contains
+only media cleared by the export policy. A detailed profile can retain unknown or
+conflicting rights states; showing those images is a deliberate UI decision and must
+not imply reuse permission.
 
 ## Result expected from an agent
 

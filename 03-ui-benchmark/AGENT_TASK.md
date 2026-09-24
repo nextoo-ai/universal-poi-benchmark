@@ -59,6 +59,9 @@ The required product capabilities are deliberately short:
 - an effective way to browse or search a dataset containing at least 500 POIs;
 - a useful place detail experience based on available text and metadata;
 - filters and a reversible way to hide individual POIs from the working view;
+- useful filters for records with and without media and with and without ratings;
+- provider-neutral rating display and filtering that respects each declared or
+  detected numeric scale;
 - a clear way to load another dataset, with explicit merge or replacement behavior;
 - a visible action to delete the active dataset and return to the empty Rome state;
 - a trip setup flow based on arrival and departure date and time, with a simpler
@@ -77,18 +80,27 @@ other enhancements are design decisions. Add them when they make the experience
 better. Avoid features that weaken the main flow or pretend to know travel times that
 cannot be supported.
 
-## Media and licensing boundary
+## Optional media and ratings
 
-The benchmark does not require photographs. The final build must contain no POI
-images from the development dataset. You may choose any of these product directions:
+The final build must contain no POI images from the development dataset. User-loaded
+POIs may contain zero, one, or multiple media items. The experience must remain
+complete without images and may display available images from the loaded file.
 
-- a strong image-free interface;
-- support for image URLs present in a user-loaded file;
-- a user preference that enables or disables remote images.
+When displaying media, surface attribution and license information when present. A
+`detailed` export can mark rights as `declared`, `unknown`, or `conflicting`; do not
+present such a state as verified permission. Users must be able to distinguish or
+filter POIs with media from those without it.
 
-If the interface displays user-provided media, surface attribution and license fields
-when present. Do not use third-party POI photography as decorative application
-content.
+Ratings are optional and are not Google-specific. A POI can have ratings from one or
+more providers or no rating. Never convert a missing rating into zero. Show the raw
+value with its original scale, and use a normalized 0–1 value when comparing or
+filtering across providers.
+
+Canonical v1 ratings explicitly declare their scale. For compatible legacy inputs
+without scale metadata, detect one at dataset level from declared provider metadata
+or a consistent observed range. Make the detected scale visible in the UI. If the
+scale remains ambiguous, display the raw value but do not apply a misleading
+cross-provider threshold.
 
 ## Data handling
 

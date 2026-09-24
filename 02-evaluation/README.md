@@ -38,6 +38,9 @@ scoring rubric is intentionally deferred.
   MIME checks, structured status values, and review-queue integration.
 - JSON, JSONL, and CSV review exports plus a deterministic JSON summary report.
 - LLM review request/result contracts and a versioned content-review prompt.
+- A versioned canonical export contract for safe and detailed POI datasets, including
+  provider-neutral rating scales and explicit media-rights states. The exporter that
+  resolves reviewed records into this contract remains the next implementation step.
 
 ## Requirements and setup
 
@@ -194,6 +197,11 @@ Qualitative review integration consists of:
   — machine-readable input/output contracts;
 - [prompts/content-review.md](prompts/content-review.md) — a blind-review prompt that
   requires evidence and keeps all six identity relations.
+
+The planned canonical handoff is documented in [CANONICAL_EXPORT.md](CANONICAL_EXPORT.md)
+and validated by [contracts/canonical-poi-v1.schema.json](contracts/canonical-poi-v1.schema.json).
+Current media-license counts and their limitations are recorded in
+[MEDIA_LICENSE_AUDIT.md](MEDIA_LICENSE_AUDIT.md).
 
 ## Tests
 

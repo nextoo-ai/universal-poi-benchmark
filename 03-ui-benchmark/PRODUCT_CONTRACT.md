@@ -86,6 +86,20 @@ The application does not expose direct source-record editing. A user cannot rena
 move, rewrite, create, or delete an individual imported POI. Hiding a POI or removing
 it from an itinerary is an overlay action and does not mutate the source record.
 
+### 14. Optional media
+
+The populated experience works when every POI has media, when some do, and when none
+do. It can distinguish and filter records with and without media. Broken or omitted
+media does not collapse the place-detail layout. When an image is shown, available
+creator, attribution, source page, license, and rights status remain accessible.
+
+### 15. Optional provider-neutral ratings
+
+The experience distinguishes an absent rating from a numeric zero. It can filter POIs
+that have ratings and POIs that do not. A displayed rating includes its provider and
+original scale. Cross-provider ordering or filtering uses a normalized score only
+after the scale has been declared or consistently detected.
+
 ## Required data behavior
 
 - Required format: UTF-8 JSON matching `contracts/poi-upload.schema.json`.
@@ -101,6 +115,9 @@ it from an itinerary is an overlay action and does not mutate the source record.
   choice between them is a product-design decision.
 - Dataset deletion: required and must restore the empty Rome state when no data remain.
 - POI editing: source records remain read-only regardless of dataset lifecycle.
+- Media and ratings: optional per POI; their absence is a supported state.
+- Rating scale: explicit canonical scale is preferred. Legacy scale detection must be
+  dataset-consistent and must not silently compare ambiguous values.
 - POI persistence: optional. If implemented, dataset deletion must also clear the
   persisted copy.
 - Plan persistence: optional but encouraged; keep it separate from source POI data.

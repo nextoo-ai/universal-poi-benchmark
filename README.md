@@ -43,10 +43,16 @@ Do not combine agent submissions before evaluation.
 
 ### Evaluation → UI benchmark
 
-Step 2 creates canonical groups and identifies unresolved conflicts. A reviewed,
-consolidated JSON export is the intended input for Step 3. The current evaluator
-implements grouping, verification, reports, and review queues; a final reviewed
-`canonical-poi-v1.json` export command remains future work.
+Step 2 creates canonical groups and identifies unresolved conflicts. Its intended
+reviewed handoff consists of two compatible exports:
+
+- `canonical-poi-v1.safe.json` for redistribution, containing only media that pass
+  the configured license policy;
+- `canonical-poi-v1.detailed.json` for controlled development and audit, retaining
+  complete media, rating, provenance, and verification states.
+
+The current evaluator implements grouping, verification, reports, and review queues;
+the final reviewed export command remains future work.
 
 Step 3 accepts a portable JSON object with a `pois` array. Its minimum upload contract
 is intentionally compatible with richer discovery records and allows additional

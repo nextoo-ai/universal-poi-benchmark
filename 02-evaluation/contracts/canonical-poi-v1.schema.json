@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nextoo.io/schemas/canonical-poi-v1.json",
+  "title": "Canonical POI dataset v1",
+  "type": "object",
+  "required": ["metadata", "pois"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": ["schemaVersion", "exportProfile", "generatedAt"],
+      "properties": {
+        "schemaVersion": { "const": "1.0" },
+        "exportProfile": { "enum": ["safe", "detailed"] },
+        "generatedAt": { "type": "string", "format": "date-time" },
+        "datasetVersion": { "type": "string" },
+        "destinationId": { "type": ["string", "null"] },
+        "language": { "type": ["string", "null"] },
+        "licensePolicyVersion": { "type": ["string", "null"] }
+      },
+      "additionalProperties": true
+    },
+    "pois": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/poi" }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "scale": {
+      "type": "object",
+      "required": ["min", "max"],
+      "properties": {
+        "min": { "type": "number" },
+        "max": { "type": "number" }
+      },
+      "additionalProperties": false
+    },
+    "rating": {
+      "type": "object",
+      "required": ["provider", "value", "scale", "normalizedScore", "scaleInference", "verificationStatus"],
+      "properties": {
+        "provider": { "type": "string", "minLength": 1 },
+        "value": { "type": "number" },
+        "scale": { "$ref": "#/$defs/scale" },
+        "normalizedScore": { "type": "number", "minimum": 0, "maximum": 1 },
+        "scaleInference": { "enum": ["explicit", "provider-rule", "dataset-inferred"] },
+        "verificationStatus": {
+          "enum": ["verified-source", "source-unavailable", "unverified"]
+        },
+        "reviewCount": { "type": ["integer", "null"], "minimum": 0 },
+        "observedAt": { "type": ["string", "null"], "format": "date" },
+        "sourceUrl": { "type": ["string", "null"], "format": "uri" }
+      },
+      "additionalProperties": true
+    },
+    "media": {
+      "type": "object",
+      "required": ["url", "sourcePageUrl", "license", "rightsStatus"],
+      "properties": {
+        "url": { "type": "string", "format": "uri" },
+        "sourcePageUrl": { "type": "string", "format": "uri" },
+        "license": {
+          "type": "object",
+          "required": ["name", "url"],
+          "properties": {
+            "name": { "type": "string", "minLength": 1 },
+            "normalized": { "type": ["string", "null"] },
+            "url": { "type": ["string", "null"], "format": "uri" }
+          },
+          "additionalProperties": false
+        },
+        "rightsStatus": {
+          "enum": ["verified-permissive", "declared", "unknown", "conflicting"]
+        },
+        "creator": { "type": ["string", "null"] },
+        "attribution": { "type": ["string", "null"] },
+        "caption": { "type": ["string", "null"] }
+      },
+      "additionalProperties": true
+    },
+    "poi": {
+      "type": "object",
+      "required": ["id", "name", "category", "location", "ratings", "media"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "name": { "type": "string", "minLength": 1 },
+        "alternateNames": { "type": "array", "items": { "type": "string" } },
+        "category": { "type": "string", "minLength": 1 },
+        "subcategory": { "type": ["string", "null"] },
+        "description": { "type": ["string", "null"] },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "location": {
+          "type": "object",
+          "required": ["latitude", "longitude"],
+          "properties": {
+            "latitude": { "type": "number", "minimum": -90, "maximum": 90 },
+            "longitude": { "type": "number", "minimum": -180, "maximum": 180 }
+          },
+          "additionalProperties": true
+        },
+        "externalIds": { "type": "object", "additionalProperties": true },
+        "links": { "type": ["object", "array", "null"] },
+        "ratings": { "type": "array", "items": { "$ref": "#/$defs/rating" } },
+        "media": { "type": "array", "items": { "$ref": "#/$defs/media" } },
+        "provenance": { "type": ["object", "null"] }
+      },
+      "additionalProperties": true
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "metadata": {
+            "properties": { "exportProfile": { "const": "safe" } },
+            "required": ["exportProfile"]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "pois": {
+            "items": {
+              "properties": {
+                "media": {
+                  "items": {
+                    "properties": { "rightsStatus": { "const": "verified-permissive" } }
+                  }
+                },
+                "ratings": {
+                  "items": {
+                    "properties": { "verificationStatus": { "const": "verified-source" } }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
