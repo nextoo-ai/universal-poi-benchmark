@@ -73,7 +73,19 @@ poi-evaluator --db work/evaluation.sqlite export-review outputs/review-queue.jso
 poi-evaluator --db work/evaluation.sqlite report outputs/report.json
 poi-evaluator --db work/evaluation.sqlite agent-report outputs/agent-evaluation.json \
   --markdown outputs/agent-evaluation.md
+poi-evaluator --db work/evaluation.sqlite export-canonical \
+  --safe-output outputs/canonical-poi-v1.safe.json \
+  --detailed-output outputs/canonical-poi-v1.detailed.json \
+  --audit-output outputs/canonical-export-audit.json \
+  --dataset-version rome-canonical-v1
 ```
+
+The canonical export deliberately omits entities involved in unresolved identity
+matches or open high-severity conflicts. The safe profile contains only media with
+complete permissive-license attribution and ratings whose source URL passed the URL
+validator. The detailed profile retains media and ratings with explicit rights and
+verification states. Both outputs preserve record-level provenance, while the audit
+file records every exclusion and aggregate count.
 
 URL validation resumes by default, deduplicates equal URLs, and uses bounded
 concurrency. The limits can be adjusted without changing the stored contract:

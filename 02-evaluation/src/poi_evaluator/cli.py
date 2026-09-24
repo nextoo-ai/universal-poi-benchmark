@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any, Sequence
 
 from .db import complete_run, connect, evaluation_run, initialize
+from .canonical_export import write_canonical_exports
 from .importer import import_dataset
 from .matching import RELATIONS, match_candidates, resolve_match
 from .reports import export_review_queue, write_agent_report, write_report
@@ -96,6 +97,14 @@ def build_parser() -> argparse.ArgumentParser:
     )
     agent_report_parser.add_argument("output", help="JSON output path")
     agent_report_parser.add_argument("--markdown", help="Optional human-readable Markdown output path")
+
+    canonical_parser = subparsers.add_parser(
+        "export-canonical", help="Write safe and detailed canonical POI datasets"
+    )
+    canonical_parser.add_argument("--safe-output", default="outputs/canonical-poi-v1.safe.json")
+    canonical_parser.add_argument("--detailed-output", default="outputs/canonical-poi-v1.detailed.json")
+    canonical_parser.add_argument("--audit-output", default="outputs/canonical-export-audit.json")
+    canonical_parser.add_argument("--dataset-version", default="canonical-v1")
 
     pipeline_parser = subparsers.add_parser("pipeline", help="Import, match, optionally validate URLs, and report")
     pipeline_parser.add_argument(
@@ -216,6 +225,22 @@ def run(argv: Sequence[str] | None = None) -> int:
                     "output": str(Path(args.output).resolve()),
                     "markdown": str(Path(args.markdown).resolve()) if args.markdown else None,
                     "agents": len(report["agents"]),
+                }
+            )
+        elif args.command == "export-canonical":
+            counts = write_canonical_exports(
+                connection,
+                args.safe_output,
+                args.detailed_output,
+                args.audit_output,
+                args.dataset_version,
+            )
+            _print(
+                {
+                    "safe": str(Path(args.safe_output).resolve()),
+                    "detailed": str(Path(args.detailed_output).resolve()),
+                    "audit": str(Path(args.audit_output).resolve()),
+                    "counts": counts,
                 }
             )
         elif args.command == "pipeline":
