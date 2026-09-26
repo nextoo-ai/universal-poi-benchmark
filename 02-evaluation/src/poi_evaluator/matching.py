@@ -39,6 +39,7 @@ def _candidate_pairs(
         JOIN poi_records pa ON pa.id=a.poi_record_id
         JOIN poi_records pb ON pb.id=b.poi_record_id
         WHERE pa.submission_id <> pb.submission_id
+          AND a.namespace NOT IN ('osmtype', 'osmid')
         """
     ).fetchall()
     for row in external_rows:
@@ -46,6 +47,33 @@ def _candidate_pairs(
         data = candidates.setdefault(key, {"reasons": [], "external": False})
         data["external"] = True
         data["reasons"].append(f"external_id:{row['namespace']}:{row['external_id']}")
+
+    # An OSM element is identified by the pair (type, id). Neither component is
+    # globally unique on its own: especially `osmType=node` may occur thousands
+    # of times and must never merge unrelated POIs.
+    osm_rows = connection.execute(
+        """
+        SELECT ta.poi_record_id AS left_id, tb.poi_record_id AS right_id,
+               ta.external_id AS osm_type, ia.external_id AS osm_id
+        FROM external_identifiers ta
+        JOIN external_identifiers ia
+          ON ia.poi_record_id=ta.poi_record_id AND ia.namespace='osmid'
+        JOIN external_identifiers tb
+          ON tb.namespace='osmtype' AND tb.external_id=ta.external_id
+         AND ta.poi_record_id < tb.poi_record_id
+        JOIN external_identifiers ib
+          ON ib.poi_record_id=tb.poi_record_id AND ib.namespace='osmid'
+         AND ib.external_id=ia.external_id
+        JOIN poi_records pa ON pa.id=ta.poi_record_id
+        JOIN poi_records pb ON pb.id=tb.poi_record_id
+        WHERE ta.namespace='osmtype' AND pa.submission_id <> pb.submission_id
+        """
+    ).fetchall()
+    for row in osm_rows:
+        key = (row["left_id"], row["right_id"])
+        data = candidates.setdefault(key, {"reasons": [], "external": False})
+        data["external"] = True
+        data["reasons"].append(f"external_id:osm:{row['osm_type']}:{row['osm_id']}")
 
     exact_rows = connection.execute(
         """
@@ -66,38 +94,53 @@ def _candidate_pairs(
         data["reasons"].append("normalized_name_exact")
         _add_distance(data, row)
 
-    # A broad SQL bounding box prevents an O(n²) comparison while leaving the
-    # exact haversine threshold to Python.
+    # Bucket coordinates into a grid before calculating fuzzy similarity. A SQL
+    # join using ABS(latitude-a.latitude) cannot use the coordinate index and
+    # becomes quadratic once supplemental datasets add several thousand rows.
     latitude_window = fuzzy_distance_m / 110_574.0
     longitude_window = fuzzy_distance_m / 60_000.0
-    nearby_rows = connection.execute(
+    geo_rows = connection.execute(
         """
-        SELECT a.id AS left_id, b.id AS right_id,
-               a.normalized_name AS left_name, b.normalized_name AS right_name,
-               a.latitude AS left_lat, a.longitude AS left_lon,
-               b.latitude AS right_lat, b.longitude AS right_lon
-        FROM poi_records a
-        JOIN poi_records b
-          ON a.id < b.id AND a.submission_id <> b.submission_id
-         AND ABS(a.latitude-b.latitude) <= ?
-         AND ABS(a.longitude-b.longitude) <= ?
-        WHERE a.latitude IS NOT NULL AND a.longitude IS NOT NULL
-          AND b.latitude IS NOT NULL AND b.longitude IS NOT NULL
-          AND a.normalized_name <> b.normalized_name
-        """,
-        (latitude_window, longitude_window),
+        SELECT id, submission_id, normalized_name, latitude, longitude
+        FROM poi_records
+        WHERE latitude IS NOT NULL AND longitude IS NOT NULL
+        ORDER BY id
+        """
     ).fetchall()
-    for row in nearby_rows:
-        distance = haversine_m(row["left_lat"], row["left_lon"], row["right_lat"], row["right_lon"])
-        if distance > fuzzy_distance_m:
-            continue
-        similarity = SequenceMatcher(None, row["left_name"], row["right_name"]).ratio()
-        if similarity < fuzzy_threshold:
-            continue
-        key = (row["left_id"], row["right_id"])
-        data = candidates.setdefault(key, {"reasons": [], "external": False})
-        data.update({"distance_m": distance, "name_similarity": similarity, "fuzzy_name": True})
-        data["reasons"].append("fuzzy_name_and_geo")
+    grid: dict[tuple[int, int], list[sqlite3.Row]] = defaultdict(list)
+    for row in geo_rows:
+        cell = (
+            math.floor(float(row["latitude"]) / latitude_window),
+            math.floor(float(row["longitude"]) / longitude_window),
+        )
+        for lat_delta in (-1, 0, 1):
+            for lon_delta in (-1, 0, 1):
+                for other in grid.get((cell[0] + lat_delta, cell[1] + lon_delta), []):
+                    if other["submission_id"] == row["submission_id"]:
+                        continue
+                    if other["normalized_name"] == row["normalized_name"]:
+                        continue
+                    if abs(float(other["latitude"]) - float(row["latitude"])) > latitude_window:
+                        continue
+                    if abs(float(other["longitude"]) - float(row["longitude"])) > longitude_window:
+                        continue
+                    distance = haversine_m(
+                        other["latitude"], other["longitude"], row["latitude"], row["longitude"]
+                    )
+                    if distance > fuzzy_distance_m:
+                        continue
+                    similarity = SequenceMatcher(
+                        None, other["normalized_name"], row["normalized_name"]
+                    ).ratio()
+                    if similarity < fuzzy_threshold:
+                        continue
+                    key = (other["id"], row["id"])
+                    data = candidates.setdefault(key, {"reasons": [], "external": False})
+                    data.update(
+                        {"distance_m": distance, "name_similarity": similarity, "fuzzy_name": True}
+                    )
+                    data["reasons"].append("fuzzy_name_and_geo")
+        grid[cell].append(row)
 
     for data in candidates.values():
         if "distance_m" not in data:

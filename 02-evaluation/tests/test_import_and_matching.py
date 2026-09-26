@@ -104,6 +104,40 @@ class ImportAndMatchingTests(unittest.TestCase):
         self.assertEqual(summary["conflicts_created"], 1)
         self.assertEqual(self.connection.execute("SELECT COUNT(*) FROM conflicts").fetchone()[0], 1)
 
+    def test_osm_type_alone_never_matches_unrelated_records(self):
+        first, _ = self._write(
+            "a.json",
+            {"pois": [{"id": "a", "name": "First", "lat": 41.8, "lon": 12.4,
+                       "externalIds": {"osmType": "node", "osmId": "100"}}]},
+        )
+        second, _ = self._write(
+            "b.json",
+            {"pois": [{"id": "b", "name": "Second", "lat": 41.9, "lon": 12.5,
+                       "externalIds": {"osmType": "node", "osmId": "200"}}]},
+        )
+        import_dataset(self.connection, first, "agent-a")
+        import_dataset(self.connection, second, "agent-b")
+        summary = match_candidates(self.connection, self._run_id())
+        self.assertEqual(summary["candidate_pairs"], 0)
+
+    def test_matching_osm_type_and_id_creates_same_place(self):
+        first, _ = self._write(
+            "a.json",
+            {"pois": [{"id": "a", "name": "First Name", "lat": 41.8, "lon": 12.4,
+                       "externalIds": {"osmType": "node", "osmId": "100"}}]},
+        )
+        second, _ = self._write(
+            "b.json",
+            {"pois": [{"id": "b", "name": "Other Name", "lat": 41.8, "lon": 12.4,
+                       "externalIds": {"osmType": "node", "osmId": "100"}}]},
+        )
+        import_dataset(self.connection, first, "agent-a")
+        import_dataset(self.connection, second, "agent-b")
+        summary = match_candidates(self.connection, self._run_id())
+        self.assertEqual(summary["auto_accepted"], 1)
+        reason = json.loads(self.connection.execute("SELECT reasons_json FROM matches").fetchone()[0])
+        self.assertIn("external_id:osm:node:100", reason)
+
     def test_fuzzy_candidate_enters_review_and_can_be_resolved(self):
         first, _ = self._write(
             "a.json",
